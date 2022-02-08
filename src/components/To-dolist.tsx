@@ -1,5 +1,7 @@
 import { TodoItem } from "./To-do-tem";
 import { ITodo } from "../types/data";
+import { Checkbox, TextField, Card, Container,CardContent,Typography} from "@mui/material";
+
 interface ITodoListProps {
   items: ITodo[];
   toggleTodo: (id: number) => void;
@@ -11,7 +13,7 @@ interface ITodoListProps {
 const Todolist: React.FC<ITodoListProps> = (props) => {
   const { items, toggleTodo, removeTodo, editTodo, editValue } = props;
   return (
-    <div>
+    <Container sx ={{mt:2}}>
       {items.map((todo) => (
         <TodoItem
           key={todo.id}
@@ -22,7 +24,7 @@ const Todolist: React.FC<ITodoListProps> = (props) => {
           {...todo}
         />
       ))}
-    </div>
+    </Container>
   );
 };
 export { Todolist };

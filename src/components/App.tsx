@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Todolist } from "./To-dolist";
 import { ITodo } from "../types/data";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import { Container,Button,Stack } from "@mui/material";
 
 const App: React.FC = () => {
   const [value, setValue] = useState("");
@@ -75,17 +81,37 @@ const App: React.FC = () => {
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
   }, []);
-  return (
-    <div>
-      <div>
-        <input
+
+  return (<div>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" >
+          <Toolbar variant="dense">
+            <Typography variant="h4" m="auto" color="inherit" component="div">
+              To-do-list
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Box>
+     
+        <Container maxWidth = "sm" >
+    <Stack direction="row" alignItems="center" justifyContent="center">
+          <TextField
+          fullWidth
+          size="small"
+          id="standard-basic"
+          label="Поле для текста"
+          variant="standard"
           value={value}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           ref={inputRef}
         />
-        <button onClick={Addtodo}>Add</button>
-      </div>
+        <Button variant="outlined" onClick={Addtodo}>Add</Button>
+
+        </Stack>
+        </Container>
+        
+      
       <Todolist
         items={todos}
         removeTodo={removeTodo}
